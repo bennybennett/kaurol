@@ -1,5 +1,5 @@
 import './App.css';
-import EntryList from './components/EntryList';
+import EntryList from './components/modules/EntryList/EntryList';
 import Stage from './components/Stage';
 import Kaurol from './components/modules/Kaurol/Kaurol';
 import { useState } from 'react';
@@ -12,7 +12,12 @@ function App() {
   const navigate = useNavigate();
   const [selectedEntry, setSelectedEntry] = useState<IEntry | null>(null);
 
-  const handleEntryClick = async (entryId: string) => {
+  const handleEntryClick = async (entryId?: string) => {
+    if (!entryId) {
+      navigate('/entries/create');
+      return;
+    }
+
     const entry = await getEntryById(entryId);
     setSelectedEntry(entry);
     navigate(`/entries/${entry._id}`);
@@ -26,6 +31,10 @@ function App() {
           selectedEntry={selectedEntry}
         />
         <Routes>
+          <Route
+            path='/entries/create'
+            element={<Stage entry={null} handleEntryClick={handleEntryClick} />}
+          />
           <Route
             path='/entries/:id'
             element={

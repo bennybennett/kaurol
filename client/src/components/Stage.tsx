@@ -11,7 +11,7 @@ const Stage: React.FC<StageProps> = ({ entry, handleEntryClick }) => {
   if (!entry) {
     return (
       <div className='stage' style={{ padding: '20px' }}>
-        Select an entry
+        Create an entry
       </div>
     );
   }
