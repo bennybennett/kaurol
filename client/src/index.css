@@ -1,0 +1,185 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--text-color);
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+
+:root {
+  --text-color: #dddddd;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.main {
+  display: flex;
+  height: 80vh;
+}
+
+/* Stage */
+.stage {
+  background-color: #1e1e1e;
+  color: #ccc;
+  flex: 4;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border: 1px solid #666;
+  border-radius: 4px;
+  width: 80%;
+  overflow-y: scroll;
+}
+
+.stage h2 {
+  font-size: 2rem;
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.stage h3 {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.stage p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.stage .buttons {
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+/* Character */
+.stage .character {
+  padding: 24px;
+  height: 100%;
+}
+
+.stage .character small {
+  font-size: 0.7rem;
+  display: inline-block;
+}
+
+.stage .character--link {
+  background-color: #0a310a;
+}
+
+.stage .character--edit {
+  background-color: #32380c;
+}
+
+.stage .character--add-relationship {
+  background-color: #0e2e39;
+}
+
+.stage .character--delete {
+  background-color: #4f0000;
+}
+
+.add-relationship-form {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+  width: 50%;
+}
+
+.add-relationship-form h3 {
+  margin-top: 0;
+}
+
+.add-relationship-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.add-relationship-form input,
+.add-relationship-form select {
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* EntryList */
+.entries {
+  background-color: #3c3f4d;
+  flex: 1;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid #666;
+  border-radius: 4px;
+  width: 20%;
+  overflow-y: scroll;
+}
+
+.entries ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.entries li {
+  list-style: none;
+  margin-bottom: 2px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.entries li.selected {
+  background-color: #777d98;
+  color: #ffffff;
+}
+
+.entries li:not(.selected):hover {
+  background-color: #4a4d5b;
+}
+
+.entries .entry:hover {
+  color: #ffffff;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.entries small {
+  font-size: 0.8rem;
+  color: #86d173;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-input:focus {
+  border-color: #66afe9;
+  box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+}

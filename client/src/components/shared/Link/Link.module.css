@@ -1,0 +1,12 @@
+.Link {
+  display: inline-block;
+  color: #00b884;
+  cursor: pointer;
+}
+
+.Link:hover {
+  display: inline-block;
+  color: #00ffb7;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
