@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { IEntry } from '../../../../../shared/types/entry';
 import { getAllEntries } from '../../../api/entries';
 import Button from '../../ui/Button/Button';
+import EntryTypeLabel from '../../ui/EntryTypeLabel/EntryTypeLabel';
 
 interface EntryListProps {
   handleEntryClick: (entryId?: string) => void;
@@ -31,33 +32,22 @@ const EntryList: React.FC<EntryListProps> = ({
     setSearchTerm(e.target.value);
   };
 
-  const filteredEntries = entries
-    .filter((entry) =>
-      entry.title.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-    .sort((a, b) => {
-      const aName = a.title.trim();
-      const bName = b.title.trim();
-
-      // Split names into components and reverse them
-      const aComponents = aName.split(' ').reverse();
-      const bComponents = bName.split(' ').reverse();
-
-      // Get the first and last names of the reversed name components
-      const aFirst = aComponents.pop()!;
-      const aLast = aComponents.pop()!;
-      const bFirst = bComponents.pop()!;
-      const bLast = bComponents.pop()!;
-
-      // Compare last names first
-      const lastCompare = aLast.localeCompare(bLast);
-      if (lastCompare !== 0) {
-        return lastCompare;
+  const groupEntriesByType = (entries: IEntry[]) => {
+    return entries.reduce((groupedEntries, entry) => {
+      const entryType = entry.entryType || 'Uncategorized';
+      if (!groupedEntries[entryType]) {
+        groupedEntries[entryType] = [];
       }
+      groupedEntries[entryType].push(entry);
+      return groupedEntries;
+    }, {} as Record<string, IEntry[]>);
+  };
 
-      // Compare first names if last names are the same
-      return aFirst.localeCompare(bFirst);
-    });
+  const filteredEntries = entries.filter((entry) =>
+    entry.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const groupedFilteredEntries = groupEntriesByType(filteredEntries);
 
   return (
     <div className='entries'>
@@ -72,20 +62,25 @@ const EntryList: React.FC<EntryListProps> = ({
       </div>
       <ul>
         {!entries && <li>Loading...</li>}
-        {filteredEntries.length < entries.length && (
-          <small>
-            Showing {filteredEntries.length} of {entries.length} entries
-          </small>
-        )}
-
-        {filteredEntries.map((entry: IEntry) => (
-          <li
-            key={entry._id}
-            onClick={() => handleEntryClick(entry._id)}
-            className={selectedEntry?._id === entry._id ? 'selected' : ''}
-          >
-            {entry.title}
-          </li>
+        {Object.keys(groupedFilteredEntries).map((entryType) => (
+          <React.Fragment key={entryType}>
+            <li>
+              <strong>{entryType}</strong>
+            </li>
+            {groupedFilteredEntries[entryType].map((entry: IEntry) => (
+              <li
+                key={entry._id}
+                style={{ display: 'flex', alignItems: 'center' }}
+                onClick={() => handleEntryClick(entry._id)}
+                className={selectedEntry?._id === entry._id ? 'selected' : ''}
+              >
+                <EntryTypeLabel
+                  letter={entry.entryType ? entry.entryType.charAt(0) : ''}
+                />
+                {entry.title}
+              </li>
+            ))}
+          </React.Fragment>
         ))}
       </ul>
       <Button text='Add Character' callback={() => handleEntryClick()} />

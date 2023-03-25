@@ -8,7 +8,7 @@ export interface IEntry extends Document {
   _id: string;
   title: string;
   description: string;
-  entryType?: string;
+  entryType: string;
 }
 
 export interface ICharacter extends IEntry {
