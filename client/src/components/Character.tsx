@@ -62,6 +62,20 @@ const Character: React.FC<CharacterProps> = ({
     }
   };
 
+  const filterCharacterList = () => {
+    return characterList.filter((char) => {
+      // Check if the current character is not the staged character
+      if (char._id !== stagedCharacter._id) {
+        // Check if the current character's _id is not in the staged character's relationship list
+        const isNotRelated = !stagedCharacter.relationships.some(
+          (rel) => rel.relatedCharacter === char._id
+        );
+        return isNotRelated;
+      }
+      return false;
+    });
+  };
+
   return (
     <div
       className={mode === 'view' ? 'character' : `character character--${mode}`}
@@ -95,7 +109,7 @@ const Character: React.FC<CharacterProps> = ({
           onSubmit={(relatedCharacter, relationshipType) =>
             handleSubmitAddRelationship(relatedCharacter, relationshipType)
           }
-          characterList={characterList}
+          characterList={filterCharacterList()}
         />
       )}
       <div className='buttons'>
