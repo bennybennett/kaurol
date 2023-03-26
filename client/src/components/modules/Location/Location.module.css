@@ -1,0 +1,25 @@
+.Location {
+  padding: 24px;
+  height: 100%;
+}
+
+.Location small {
+  font-size: 0.7rem;
+  display: inline-block;
+}
+
+.Location--link {
+  background-color: #0a310a;
+}
+
+.Location--edit {
+  background-color: #32380c;
+}
+
+.Location--add-relationship {
+  background-color: #0e2e39;
+}
+
+.Location--delete {
+  background-color: #4f0000;
+}

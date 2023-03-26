@@ -39,15 +39,6 @@ const LocationSchema = new Schema({
       'Natural Landmark',
     ],
     required: true,
-    validate: {
-      validator: async function () {
-        const count = await (this.constructor as any).countDocuments({
-          locationType: 'Planet',
-        });
-        return count === 0;
-      },
-      message: 'There can only be one Planet document in the collection',
-    },
   },
 });
 

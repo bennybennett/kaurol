@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import { characterRouter } from './routes/character';
 import { entryRouter } from './routes/entry';
 import { kaurolRouter } from './routes/kaurol';
+import { locationRouter } from './routes/location';
 
 require('dotenv').config();
 
@@ -21,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api/entries', entryRouter);
 app.use('/api/characters', characterRouter);
 app.use('/api/kaurol', kaurolRouter);
+app.use('/api/locations', locationRouter);
 
 // Connect to MongoDB
 mongoose

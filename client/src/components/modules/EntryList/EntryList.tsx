@@ -3,6 +3,7 @@ import { IEntry } from '../../../../../shared/types/entry';
 import { getAllEntries } from '../../../api/entries';
 import Button from '../../ui/Button/Button';
 import EntryTypeLabel from '../../ui/EntryTypeLabel/EntryTypeLabel';
+import styles from './EntryList.module.css';
 
 interface EntryListProps {
   handleEntryClick: (entryId?: string) => void;
@@ -48,13 +49,13 @@ const EntryList: React.FC<EntryListProps> = ({
   );
 
   const groupedFilteredEntries = groupEntriesByType(filteredEntries);
-
+  console.log(styles);
   return (
-    <div className='entries'>
-      <div className='search-container'>
+    <div className={styles.EntryList}>
+      <div className={styles['search-container']}>
         <input
           type='text'
-          className='search-input'
+          className={styles['search-input']}
           placeholder='Search entries...'
           value={searchTerm}
           onChange={handleSearchChange}

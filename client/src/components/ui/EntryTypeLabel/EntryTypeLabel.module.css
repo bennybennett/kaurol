@@ -6,6 +6,16 @@
   font-weight: bold;
   font-size: 50%;
   text-transform: uppercase;
+}
+
+/* Character */
+.typeC {
   background-color: #00d5ff;
+  color: #000;
+}
+
+/* Location */
+.typeL {
+  background-color: #d5ff;
   color: #000;
 }
