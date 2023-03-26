@@ -49,7 +49,6 @@ const EntryList: React.FC<EntryListProps> = ({
   );
 
   const groupedFilteredEntries = groupEntriesByType(filteredEntries);
-  console.log(styles);
   return (
     <div className={styles.EntryList}>
       <div className={styles['search-container']}>

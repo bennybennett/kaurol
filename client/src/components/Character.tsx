@@ -5,6 +5,7 @@ import AddRelationshipForm from './AddRelationshipForm';
 import { getAllCharacters, addCharacterRelationship } from '../api/characters';
 import EntryLinkText from './EntryLinkText';
 import Button from './ui/Button/Button';
+import styles from './modules/StageEntry/StageEntry.module.css';
 
 interface CharacterProps {
   character: ICharacter;
@@ -80,7 +81,6 @@ const Character: React.FC<CharacterProps> = ({
     <div
       className={mode === 'view' ? 'character' : `character character--${mode}`}
     >
-      <h2>{stagedCharacter.title}</h2>
       <small>{mode !== CharacterStageMode.View && `Mode: ${mode}`}</small>
 
       {mode === CharacterStageMode.Link ? (
@@ -112,7 +112,7 @@ const Character: React.FC<CharacterProps> = ({
           characterList={filterCharacterList()}
         />
       )}
-      <div className='buttons'>
+      <div className={styles['StageEntry--buttons']}>
         {mode !== CharacterStageMode.View ? (
           <Button
             callback={() => setMode(CharacterStageMode.View)}

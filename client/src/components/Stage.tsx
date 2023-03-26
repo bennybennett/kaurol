@@ -1,7 +1,6 @@
 import React from 'react';
 import { IEntry, ICharacter, ILocation } from '../../../shared/types/entry';
-import Character from './Character';
-import Location from './modules/Location/Location';
+import StageEntry from './modules/StageEntry/StageEntry';
 
 interface StageProps {
   entry: IEntry | null;
@@ -17,36 +16,11 @@ const Stage: React.FC<StageProps> = ({ entry, handleEntryClick }) => {
     );
   }
 
-  const isCharacter = entry.entryType === 'Character';
-
-  // Switch on entry.entryType to display Character or Location
-  const renderEntry = () => {
-    switch (entry.entryType) {
-      case 'Character':
-        return (
-          <Character
-            character={entry as ICharacter}
-            handleEntryClick={handleEntryClick}
-          />
-        );
-      case 'Location':
-        return (
-          <Location
-            entry={entry as ILocation}
-            handleEntryClick={handleEntryClick}
-          />
-        );
-      default:
-        return (
-          <div>
-            <h2>{entry.title} - (Uncategorized Entry)</h2>
-            <p>{entry.description}</p>
-          </div>
-        );
-    }
-  };
-
-  return <div className='stage'>{renderEntry()}</div>;
+  return (
+    <div className='stage'>
+      <StageEntry entry={entry} handleEntryClick={handleEntryClick} />
+    </div>
+  );
 };
 
 export default Stage;
