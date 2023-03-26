@@ -1,16 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './StageEntry.module.css';
-import { IEntry } from '../../../../../shared/types/entry';
-import { ICharacter, ILocation } from '../../../../../shared/types/entry';
-import Character from '../../Character';
+import {
+  ICharacter,
+  ILocation,
+  IEntry,
+} from '../../../../../shared/types/entry';
+import Character from './Character';
 import Location from '../Location/Location';
+import Button from '../../ui/Button/Button';
 
 interface StageEntryProps {
   entry: IEntry;
   handleEntryClick: (entryId: string) => void;
 }
 
+export enum StageEntryMode {
+  View = 'view',
+  Edit = 'edit',
+  AddRelationship = 'add-relationship',
+  Link = 'link',
+  Delete = 'delete',
+}
+
 const StageEntry: React.FC<StageEntryProps> = ({ entry, handleEntryClick }) => {
+  const [mode, setMode] = useState<StageEntryMode>(StageEntryMode.View);
+
   const renderEntry = () => {
     switch (entry.entryType) {
       case 'Character':
@@ -18,6 +32,8 @@ const StageEntry: React.FC<StageEntryProps> = ({ entry, handleEntryClick }) => {
           <Character
             character={entry as ICharacter}
             handleEntryClick={handleEntryClick}
+            mode={mode}
+            setModeBackToDefault={() => setMode(StageEntryMode.View)}
           />
         );
       case 'Location':
@@ -38,10 +54,29 @@ const StageEntry: React.FC<StageEntryProps> = ({ entry, handleEntryClick }) => {
   };
 
   return (
-    <div className={styles.StageEntry}>
+    <div className={`${styles.StageEntry} ${styles[`StageEntry-${mode}`]}`}>
+      <small>{mode !== StageEntryMode.View && `Mode: ${mode}`}</small>
       <h1>{entry.title}</h1>
       <h4>{entry.entryType}</h4>
       {renderEntry()}
+      <div className={styles['StageEntry--buttons']}>
+        {mode !== StageEntryMode.View ? (
+          <Button callback={() => setMode(StageEntryMode.View)} text='Back' />
+        ) : (
+          <div>
+            <Button
+              callback={() => setMode(StageEntryMode.AddRelationship)}
+              text='Add Relationship'
+            />
+            <Button callback={() => setMode(StageEntryMode.Link)} text='Link' />
+            <Button callback={() => setMode(StageEntryMode.Edit)} text='Edit' />
+            <Button
+              callback={() => setMode(StageEntryMode.Delete)}
+              text='Delete'
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

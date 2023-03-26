@@ -1,31 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { ICharacter } from '../../../shared/types/entry';
+import { ICharacter } from '../../../../../shared/types/entry';
 import CharacterRelationships from './CharacterRelationships';
 import AddRelationshipForm from './AddRelationshipForm';
-import { getAllCharacters, addCharacterRelationship } from '../api/characters';
-import EntryLinkText from './EntryLinkText';
-import Button from './ui/Button/Button';
-import styles from './modules/StageEntry/StageEntry.module.css';
+import {
+  getAllCharacters,
+  addCharacterRelationship,
+} from '../../../api/characters';
+import EntryLinkText from '../../EntryLinkText';
+import { StageEntryMode } from './StageEntry';
 
 interface CharacterProps {
   character: ICharacter;
   handleEntryClick: (entryId: string) => void;
-}
-
-enum CharacterStageMode {
-  View = 'view',
-  Edit = 'edit',
-  AddRelationship = 'add-relationship',
-  Link = 'link',
-  Delete = 'delete',
+  mode: StageEntryMode;
+  setModeBackToDefault: () => void;
 }
 
 const Character: React.FC<CharacterProps> = ({
   character,
   handleEntryClick,
+  mode,
+  setModeBackToDefault,
 }) => {
   const [stagedCharacter, setStagedCharacter] = useState<ICharacter>(character);
-  const [mode, setMode] = useState<CharacterStageMode>(CharacterStageMode.View);
   const [characterList, setCharacterList] = useState<ICharacter[]>([]);
 
   useEffect(() => {
@@ -57,7 +54,7 @@ const Character: React.FC<CharacterProps> = ({
         relationshipType
       );
 
-      setMode(CharacterStageMode.View);
+      setModeBackToDefault();
     } catch (error) {
       console.error(error);
     }
@@ -78,25 +75,19 @@ const Character: React.FC<CharacterProps> = ({
   };
 
   return (
-    <div
-      className={mode === 'view' ? 'character' : `character character--${mode}`}
-    >
-      <small>{mode !== CharacterStageMode.View && `Mode: ${mode}`}</small>
-
-      {mode === CharacterStageMode.Link ? (
+    <div>
+      {mode === StageEntryMode.Link ? (
         <EntryLinkText text={stagedCharacter.description} />
       ) : (
         <p>{stagedCharacter.description}</p>
       )}
 
-      {mode === CharacterStageMode.View && (
-        <div>
-          <h3>Personality</h3>
-          <p>{stagedCharacter.personality}</p>
-        </div>
-      )}
+      <div>
+        <h3>Personality</h3>
+        <p>{stagedCharacter.personality}</p>
+      </div>
 
-      {mode === CharacterStageMode.View &&
+      {mode === StageEntryMode.View &&
         stagedCharacter.relationships.length > 0 && (
           <CharacterRelationships
             handleEntryClick={handleEntryClick}
@@ -104,7 +95,7 @@ const Character: React.FC<CharacterProps> = ({
             characterList={characterList}
           />
         )}
-      {mode === CharacterStageMode.AddRelationship && (
+      {mode === StageEntryMode.AddRelationship && (
         <AddRelationshipForm
           onSubmit={(relatedCharacter, relationshipType) =>
             handleSubmitAddRelationship(relatedCharacter, relationshipType)
@@ -112,33 +103,6 @@ const Character: React.FC<CharacterProps> = ({
           characterList={filterCharacterList()}
         />
       )}
-      <div className={styles['StageEntry--buttons']}>
-        {mode !== CharacterStageMode.View ? (
-          <Button
-            callback={() => setMode(CharacterStageMode.View)}
-            text='Back'
-          />
-        ) : (
-          <div>
-            <Button
-              callback={() => setMode(CharacterStageMode.AddRelationship)}
-              text='Add Relationship'
-            />
-            <Button
-              callback={() => setMode(CharacterStageMode.Link)}
-              text='Link'
-            />
-            <Button
-              callback={() => setMode(CharacterStageMode.Edit)}
-              text='Edit'
-            />
-            <Button
-              callback={() => setMode(CharacterStageMode.Delete)}
-              text='Delete'
-            />
-          </div>
-        )}
-      </div>
     </div>
   );
 };

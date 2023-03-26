@@ -1,4 +1,3 @@
-import './App.css';
 import EntryList from './components/modules/EntryList/EntryList';
 import Stage from './components/Stage';
 import Kaurol from './components/modules/Kaurol/Kaurol';

@@ -26,6 +26,22 @@
   margin-bottom: 0;
 }
 
+.StageEntry-link {
+  background-color: #0a310a;
+}
+
+.StageEntry-edit {
+  background-color: #32380c;
+}
+
+.StageEntry-add-relationship {
+  background-color: #0e2e39;
+}
+
+.StageEntry-delete {
+  background-color: #4f0000;
+}
+
 /* Character */
 .stage .character {
   padding: 24px;
@@ -35,22 +51,6 @@
 .stage .character small {
   font-size: 0.7rem;
   display: inline-block;
-}
-
-.stage .character--link {
-  background-color: #0a310a;
-}
-
-.stage .character--edit {
-  background-color: #32380c;
-}
-
-.stage .character--add-relationship {
-  background-color: #0e2e39;
-}
-
-.stage .character--delete {
-  background-color: #4f0000;
 }
 
 .add-relationship-form {

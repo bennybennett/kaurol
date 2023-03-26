@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ICharacter } from '../../../shared/types/entry';
-import Link from './shared/Link/Link';
+import { ICharacter } from '../../../../../shared/types/entry';
+import Link from '../../shared/Link/Link';
 
 interface CharacterRelationship {
   _id?: string;

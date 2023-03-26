@@ -1,5 +1,5 @@
 import React from 'react';
-import { ICharacter } from '../../../shared/types/entry';
+import { ICharacter } from '../../../../../shared/types/entry';
 
 interface AddRelationshipFormProps {
   onSubmit: (relatedCharacter: string, relationshipType: string) => void;
