@@ -44,9 +44,27 @@ const EntryList: React.FC<EntryListProps> = ({
     }, {} as Record<string, IEntry[]>);
   };
 
-  const filteredEntries = entries.filter((entry) =>
-    entry.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredEntries = entries
+    .filter((entry) =>
+      entry.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .sort((a, b) => {
+      const lastWordA = a.title.match(/[A-Z][a-z]*$/)?.[0];
+      const lastWordB = b.title.match(/[A-Z][a-z]*$/)?.[0];
+      const firstWordA = a.title.match(/^[A-Z][a-z]*/)?.[0];
+      const firstWordB = b.title.match(/^[A-Z][a-z]*/)?.[0];
+
+      return (
+        (lastWordA && lastWordB ? lastWordA.localeCompare(lastWordB) : 0) ||
+        (firstWordA && firstWordB
+          ? firstWordA.localeCompare(firstWordB)
+          : firstWordA
+          ? -1
+          : firstWordB
+          ? 1
+          : 0)
+      );
+    });
 
   const groupedFilteredEntries = groupEntriesByType(filteredEntries);
   return (
