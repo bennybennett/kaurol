@@ -15,3 +15,8 @@ export interface ICharacter extends IEntry {
   personality: string;
   relationships: ICharacterRelationship[];
 }
+
+export interface ILocation extends IEntry {
+  locationType: string;
+  parent: string;
+}

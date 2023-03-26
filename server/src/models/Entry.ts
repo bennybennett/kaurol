@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { ICharacter, IEntry } from '../../../shared/types/entry';
+import { ICharacter, IEntry, ILocation } from '../../../shared/types/entry';
 
 const EntrySchema = new Schema(
   {
@@ -24,8 +24,39 @@ const CharacterSchema = new Schema({
   relationships: [CharacterRelationshipSchema],
 });
 
+const LocationSchema = new Schema({
+  parent: { type: Schema.Types.ObjectId, ref: 'Entry' },
+  locationType: {
+    type: String,
+    enum: [
+      'Planet',
+      'City',
+      'Region',
+      'Nation',
+      'Landmark',
+      'Continent',
+      'Building',
+      'Natural Landmark',
+    ],
+    required: true,
+    validate: {
+      validator: async function () {
+        const count = await (this.constructor as any).countDocuments({
+          locationType: 'Planet',
+        });
+        return count === 0;
+      },
+      message: 'There can only be one Planet document in the collection',
+    },
+  },
+});
+
 export const EntryModel = mongoose.model<IEntry>('Entry', EntrySchema);
 export const CharacterModel = EntryModel.discriminator<ICharacter>(
   'Character',
   CharacterSchema
+);
+export const LocationModel = EntryModel.discriminator<ILocation>(
+  'Location',
+  LocationSchema
 );
