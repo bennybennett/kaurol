@@ -1,5 +1,5 @@
 import React from 'react';
-import { IEntry, ICharacter, ILocation } from '../../../shared/types/entry';
+import { IEntry } from '../../../shared/types/entry';
 import StageEntry from './modules/StageEntry/StageEntry';
 
 interface StageProps {
