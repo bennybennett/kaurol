@@ -1,5 +1,6 @@
 import React from 'react';
 import { ICharacter } from '../../../../../shared/types/entry';
+import styles from './AddRelationshipForm.module.css';
 
 interface AddRelationshipFormProps {
   onSubmit: (relatedCharacter: string, relationshipType: string) => void;
@@ -18,7 +19,7 @@ const AddRelationshipForm: React.FC<AddRelationshipFormProps> = ({
   };
 
   return (
-    <div className='add-relationship-form'>
+    <div className={styles.AddRelationshipForm}>
       <h3>Add Relationship</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor='relatedCharacter'>Related Character</label>

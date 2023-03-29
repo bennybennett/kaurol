@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ICharacter } from '../../../../../shared/types/entry';
 import CharacterRelationships from './CharacterRelationships';
-import AddRelationshipForm from './AddRelationshipForm';
+import AddRelationshipForm from '../AddRelationshipForm/AddRelationshipForm';
 import {
   getAllCharacters,
   addCharacterRelationship,
