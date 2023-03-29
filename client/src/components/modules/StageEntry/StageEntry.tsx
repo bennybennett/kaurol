@@ -17,7 +17,6 @@ interface StageEntryProps {
 export enum StageEntryMode {
   View = 'view',
   Edit = 'edit',
-  AddRelationship = 'add-relationship',
   Link = 'link',
   Delete = 'delete',
 }
@@ -64,10 +63,6 @@ const StageEntry: React.FC<StageEntryProps> = ({ entry, handleEntryClick }) => {
           <Button callback={() => setMode(StageEntryMode.View)} text='Back' />
         ) : (
           <div>
-            <Button
-              callback={() => setMode(StageEntryMode.AddRelationship)}
-              text='Add Relationship'
-            />
             <Button callback={() => setMode(StageEntryMode.Link)} text='Link' />
             <Button callback={() => setMode(StageEntryMode.Edit)} text='Edit' />
             <Button

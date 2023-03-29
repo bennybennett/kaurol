@@ -95,14 +95,12 @@ const Character: React.FC<CharacterProps> = ({
             characterList={characterList}
           />
         )}
-      {mode === StageEntryMode.AddRelationship && (
-        <AddRelationshipForm
-          onSubmit={(relatedCharacter, relationshipType) =>
-            handleSubmitAddRelationship(relatedCharacter, relationshipType)
-          }
-          characterList={filterCharacterList()}
-        />
-      )}
+      <AddRelationshipForm
+        onSubmit={(relatedCharacter, relationshipType) =>
+          handleSubmitAddRelationship(relatedCharacter, relationshipType)
+        }
+        characterList={filterCharacterList()}
+      />
     </div>
   );
 };
