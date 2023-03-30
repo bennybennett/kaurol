@@ -42,40 +42,29 @@
   background-color: #4f0000;
 }
 
-/* Character */
-.stage .character {
-  padding: 24px;
-  height: 100%;
+.StageEntry-description {
+  margin-bottom: 1rem;
 }
 
-.stage .character small {
-  font-size: 0.7rem;
-  display: inline-block;
-}
-
-.add-relationship-form {
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin-top: 20px;
-  border-radius: 5px;
-  width: 50%;
-}
-
-.add-relationship-form h3 {
-  margin-top: 0;
-}
-
-.add-relationship-form label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.add-relationship-form input,
-.add-relationship-form select {
-  padding: 5px;
-  border-radius: 3px;
-  border: 1px solid #ccc;
+.StageEntry-description-edit {
+  background-color: #2a2a2a;
+  color: #f5f5f5;
+  font-size: 16px;
+  line-height: 1.5;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  padding: 12px;
   width: 100%;
-  margin-bottom: 10px;
+  resize: vertical;
+  min-height: 400px;
+  outline: none;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.StageEntry-description-edit:focus {
+  border-color: #5a5a5a;
+}
+
+.StageEntry-description-edit::placeholder {
+  color: #7a7a7a;
 }

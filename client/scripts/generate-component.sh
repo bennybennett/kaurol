@@ -38,7 +38,7 @@ const ${COMPONENT_NAME}: React.FC<${COMPONENT_NAME}Props> = ({}) => {
 export default ${COMPONENT_NAME};
 EOF
 
-echo "Component $COMPONENT_NAME created in $COMPONENT_PATH/$COMPONENT_NAME.tsx"
+echo "Component $COMPONENT_NAME created in $COMPONENT_PATH$COMPONENT_NAME.tsx"
 
 # Generate CSS file
 cat > "$COMPONENT_PATH/${COMPONENT_NAME}.module.css" <<EOF

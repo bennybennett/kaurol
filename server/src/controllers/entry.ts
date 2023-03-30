@@ -26,6 +26,26 @@ export const getEntryById = async (req: Request, res: Response) => {
   }
 };
 
+export const updateEntry = async (req: Request, res: Response) => {
+  try {
+    const entryId = req.params.id;
+
+    const updatedEntry = await EntryModel.findByIdAndUpdate(entryId, req.body, {
+      new: true,
+    });
+    console.log('updatedEntry', updatedEntry);
+
+    if (!updatedEntry) {
+      res.status(404).json({ error: 'Entry not found' });
+      return;
+    }
+
+    res.status(200).json(updatedEntry);
+  } catch (error) {
+    res.status(400).json({ error: (error as Error).message });
+  }
+};
+
 export const deleteEntry = async (req: Request, res: Response) => {
   try {
     const entryId = req.params.id;

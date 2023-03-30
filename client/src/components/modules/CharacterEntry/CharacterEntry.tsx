@@ -6,17 +6,17 @@ import {
   getAllCharacters,
   addCharacterRelationship,
 } from '../../../api/characters';
-import EntryLinkText from '../../EntryLinkText';
-import { StageEntryMode } from './StageEntry';
+import { StageEntryMode } from '../StageEntry/StageEntry';
+import styles from './CharacterEntry.module.css';
 
-interface CharacterProps {
+interface CharacterEntryProps {
   character: ICharacter;
   handleEntryClick: (entryId: string) => void;
   mode: StageEntryMode;
   setModeBackToDefault: () => void;
 }
 
-const Character: React.FC<CharacterProps> = ({
+const CharacterEntry: React.FC<CharacterEntryProps> = ({
   character,
   handleEntryClick,
   mode,
@@ -31,10 +31,12 @@ const Character: React.FC<CharacterProps> = ({
         const characters = await getAllCharacters();
         setCharacterList(characters);
 
-        // Update the current character, or set it to the original character if it's not in the list for some reason
-        setStagedCharacter(
-          characters.find((char) => char._id === character._id) || character
+        const updatedCharacter = characters.find(
+          (char) => char._id === character._id
         );
+        if (updatedCharacter) {
+          setStagedCharacter(updatedCharacter);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -60,29 +62,18 @@ const Character: React.FC<CharacterProps> = ({
     }
   };
 
-  const filterCharacterList = () => {
-    return characterList.filter((char) => {
-      // Check if the current character is not the staged character
-      if (char._id !== stagedCharacter._id) {
-        // Check if the current character's _id is not in the staged character's relationship list
-        const isNotRelated = !stagedCharacter.relationships.some(
+  const filterCharacterList = () =>
+    characterList.filter((char) => {
+      return (
+        char._id !== stagedCharacter._id &&
+        !stagedCharacter.relationships.some(
           (rel) => rel.relatedCharacter === char._id
-        );
-        return isNotRelated;
-      }
-      return false;
+        )
+      );
     });
-  };
 
   return (
-    <div>
-      <p>{stagedCharacter.description}</p>
-
-      <div>
-        <h3>Personality</h3>
-        <p>{stagedCharacter.personality}</p>
-      </div>
-
+    <div className={styles.CharacterEntry}>
       {mode === StageEntryMode.View &&
         stagedCharacter.relationships.length > 0 && (
           <CharacterRelationships
@@ -91,14 +82,14 @@ const Character: React.FC<CharacterProps> = ({
             characterList={characterList}
           />
         )}
-      <AddRelationshipForm
-        onSubmit={(relatedCharacter, relationshipType) =>
-          handleSubmitAddRelationship(relatedCharacter, relationshipType)
-        }
-        characterList={filterCharacterList()}
-      />
+      {mode === StageEntryMode.View && (
+        <AddRelationshipForm
+          onSubmit={handleSubmitAddRelationship}
+          characterList={filterCharacterList()}
+        />
+      )}
     </div>
   );
 };
 
-export default Character;
+export default CharacterEntry;

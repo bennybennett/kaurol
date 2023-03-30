@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './StageEntry.module.css';
 import {
   ICharacter,
   ILocation,
   IEntry,
 } from '../../../../../shared/types/entry';
-import Character from './Character';
-import Location from '../Location/Location';
+import CharacterEntry from '../CharacterEntry/CharacterEntry';
+import LocationEntry from '../LocationEntry/LocationEntry';
+import EntryDescription from './EntryDescription';
 import Button from '../../ui/Button/Button';
+
+import { updateEntry } from '../../../api/entries';
 
 interface StageEntryProps {
   entry: IEntry;
@@ -17,18 +20,22 @@ interface StageEntryProps {
 export enum StageEntryMode {
   View = 'view',
   Edit = 'edit',
-  Link = 'link',
   Delete = 'delete',
 }
 
 const StageEntry: React.FC<StageEntryProps> = ({ entry, handleEntryClick }) => {
   const [mode, setMode] = useState<StageEntryMode>(StageEntryMode.View);
+  const [description, setDescription] = useState(entry.description);
+
+  useEffect(() => {
+    setDescription(entry.description);
+  }, [entry.description]);
 
   const renderEntry = () => {
     switch (entry.entryType) {
       case 'Character':
         return (
-          <Character
+          <CharacterEntry
             character={entry as ICharacter}
             handleEntryClick={handleEntryClick}
             mode={mode}
@@ -37,7 +44,7 @@ const StageEntry: React.FC<StageEntryProps> = ({ entry, handleEntryClick }) => {
         );
       case 'Location':
         return (
-          <Location
+          <LocationEntry
             entry={entry as ILocation}
             handleEntryClick={handleEntryClick}
           />
@@ -52,18 +59,38 @@ const StageEntry: React.FC<StageEntryProps> = ({ entry, handleEntryClick }) => {
     }
   };
 
+  const cancelEdit = () => {
+    setMode(StageEntryMode.View);
+    setDescription(entry.description);
+  };
+
+  const saveEdit = async () => {
+    setMode(StageEntryMode.View);
+
+    console.log(description);
+    await updateEntry(entry._id, { description }).catch((err) => {
+      console.log(err);
+    });
+  };
+
   return (
     <div className={`${styles.StageEntry} ${styles[`StageEntry-${mode}`]}`}>
-      <small>{mode !== StageEntryMode.View && `Mode: ${mode}`}</small>
       <h1>{entry.title}</h1>
       <h4>{entry.entryType}</h4>
+      <EntryDescription
+        description={description}
+        mode={mode}
+        handleDescriptionChange={setDescription}
+      />
       {renderEntry()}
       <div className={styles['StageEntry--buttons']}>
-        {mode !== StageEntryMode.View ? (
-          <Button callback={() => setMode(StageEntryMode.View)} text='Back' />
+        {mode === StageEntryMode.Edit ? (
+          <>
+            <Button callback={cancelEdit} text='Cancel' />
+            <Button callback={saveEdit} text='Save' />
+          </>
         ) : (
           <div>
-            <Button callback={() => setMode(StageEntryMode.Link)} text='Link' />
             <Button callback={() => setMode(StageEntryMode.Edit)} text='Edit' />
             <Button
               callback={() => setMode(StageEntryMode.Delete)}
