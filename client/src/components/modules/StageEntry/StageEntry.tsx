@@ -78,12 +78,6 @@ const StageEntry: React.FC<StageEntryProps> = ({ entry, handleEntryClick }) => {
     <div className={`${styles.StageEntry} ${styles[`StageEntry-${mode}`]}`}>
       <h1>{entry.title}</h1>
       <Chip text={entry.entryType} />
-      <EntryDescription
-        description={description}
-        mode={mode}
-        handleDescriptionChange={setDescription}
-      />
-      {renderEntry()}
       <div className={styles['StageEntry--buttons']}>
         {mode === StageEntryMode.Edit ? (
           <>
@@ -100,6 +94,12 @@ const StageEntry: React.FC<StageEntryProps> = ({ entry, handleEntryClick }) => {
           </div>
         )}
       </div>
+      <EntryDescription
+        description={description}
+        mode={mode}
+        handleDescriptionChange={setDescription}
+      />
+      {renderEntry()}
     </div>
   );
 };

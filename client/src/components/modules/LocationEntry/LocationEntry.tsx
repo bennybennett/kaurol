@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './LocationEntry.module.css';
 import { ILocation } from '../../../../../shared/types/entry';
 

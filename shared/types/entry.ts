@@ -18,5 +18,6 @@ export interface ICharacter extends IEntry {
 
 export interface ILocation extends IEntry {
   locationType: string;
-  parent: string;
+  parent: string | ILocation;
+  sublocations?: ILocation[];
 }
