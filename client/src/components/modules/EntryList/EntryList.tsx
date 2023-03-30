@@ -5,7 +5,7 @@ import EntryTypeLabel from '../../ui/EntryTypeLabel/EntryTypeLabel';
 import styles from './EntryList.module.css';
 import { Link as RouterLink } from 'react-router-dom';
 
-const EntryList: React.FC = ({}) => {
+const EntryList: React.FC = () => {
   const [entries, setEntries] = useState<IEntry[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
 

@@ -27,6 +27,7 @@ const EntryDescription: React.FC<EntryDescriptionProps> = ({
       const highlightedSelection = `{{${selection}}}`;
       const newText = text.replace(selection, highlightedSelection);
       setHighlightedText(selection);
+      console.log(newText);
     } else {
       setHighlightedText('');
     }

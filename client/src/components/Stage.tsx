@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getEntryById } from '../api/entries';
 
-const Stage: React.FC = ({}) => {
+const Stage: React.FC = () => {
   const [selectedEntry, setSelectedEntry] = useState<IEntry | null>(null);
   const { id } = useParams();
 

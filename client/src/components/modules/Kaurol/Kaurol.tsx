@@ -9,7 +9,7 @@ import Link from '../../shared/Link/Link';
 import Button from '../../ui/Button/Button';
 import styles from './Kaurol.module.css';
 
-const Kaurol: React.FC = ({}) => {
+const Kaurol: React.FC = () => {
   const [suggestions, setSuggestions] = useState<ISuggestion[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
