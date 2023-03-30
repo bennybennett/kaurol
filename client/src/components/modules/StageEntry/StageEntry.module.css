@@ -69,3 +69,7 @@
 .StageEntry-description-edit::placeholder {
   color: #7a7a7a;
 }
+
+.StageEntry-description--link {
+  margin: 1rem 0;
+}

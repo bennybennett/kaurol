@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import ReactMarkdown from 'react-markdown';
+import { FC } from 'react';
+import ReactMarkdown, { Components } from 'react-markdown';
 
 interface MarkdownRendererProps {
   markdownText: string;
