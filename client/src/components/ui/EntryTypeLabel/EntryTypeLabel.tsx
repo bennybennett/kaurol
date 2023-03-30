@@ -1,22 +1,22 @@
 import React from 'react';
+import { generateColor } from '../../../util/color';
 import styles from './EntryTypeLabel.module.css';
 
 interface EntryTypeLabelProps {
   letter: string;
+  seedText?: string;
 }
 
-const EntryTypeLabel: React.FC<EntryTypeLabelProps> = ({ letter }) => {
-  let typeClass = '';
-  if (letter === 'C') {
-    typeClass = styles.typeC;
-  } else if (letter === 'L') {
-    typeClass = styles.typeL;
-  } else {
-    typeClass = styles.defaultType;
-  }
+const EntryTypeLabel: React.FC<EntryTypeLabelProps> = ({
+  letter,
+  seedText,
+}) => {
+  const chipStyle = generateColor(seedText || letter);
 
   return (
-    <div className={`${styles.EntryTypeLabel} ${typeClass}`}>{letter}</div>
+    <div className={`${styles.EntryTypeLabel}`} style={chipStyle}>
+      {letter}
+    </div>
   );
 };
 

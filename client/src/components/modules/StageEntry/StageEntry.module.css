@@ -3,39 +3,30 @@
   height: 100%;
 }
 
-.stage h2 {
+.StageEntry h1 {
+  font-size: 2.4rem;
+  margin: 0;
+}
+
+.StageEntry h2 {
   font-size: 2rem;
   color: #fff;
   margin-top: 0;
   margin-bottom: 0;
 }
 
-.stage h3 {
+.StageEntry h3 {
   font-size: 1.2rem;
   color: #fff;
   margin-bottom: 4px;
 }
 
-.stage p {
-  font-size: 1rem;
-  margin-bottom: 20px;
-}
-
 .StageEntry--buttons {
   margin-top: 12px;
-  margin-bottom: 0;
-}
-
-.StageEntry-link {
-  background-color: #0a310a;
 }
 
 .StageEntry-edit {
   background-color: #32380c;
-}
-
-.StageEntry-add-relationship {
-  background-color: #0e2e39;
 }
 
 .StageEntry-delete {
@@ -43,7 +34,17 @@
 }
 
 .StageEntry-description {
-  margin-bottom: 1rem;
+  margin: 3rem 0;
+}
+
+.StageEntry-description h1 {
+  font-size: 2rem;
+  color: #fff;
+}
+
+.StageEntry-description h2 {
+  font-size: 1.5rem;
+  color: #ccc;
 }
 
 .StageEntry-description-edit {

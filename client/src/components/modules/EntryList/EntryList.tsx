@@ -93,6 +93,7 @@ const EntryList: React.FC<EntryListProps> = ({
                 className={selectedEntry?._id === entry._id ? 'selected' : ''}
               >
                 <EntryTypeLabel
+                  seedText={entry.entryType}
                   letter={entry.entryType ? entry.entryType.charAt(0) : ''}
                 />
                 {entry.title}

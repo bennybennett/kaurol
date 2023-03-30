@@ -9,6 +9,7 @@ import CharacterEntry from '../CharacterEntry/CharacterEntry';
 import LocationEntry from '../LocationEntry/LocationEntry';
 import EntryDescription from './EntryDescription';
 import Button from '../../ui/Button/Button';
+import Chip from '../../ui/Chip/Chip';
 
 import { updateEntry } from '../../../api/entries';
 
@@ -76,7 +77,7 @@ const StageEntry: React.FC<StageEntryProps> = ({ entry, handleEntryClick }) => {
   return (
     <div className={`${styles.StageEntry} ${styles[`StageEntry-${mode}`]}`}>
       <h1>{entry.title}</h1>
-      <h4>{entry.entryType}</h4>
+      <Chip text={entry.entryType} />
       <EntryDescription
         description={description}
         mode={mode}
