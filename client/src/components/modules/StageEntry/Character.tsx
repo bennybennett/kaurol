@@ -76,11 +76,7 @@ const Character: React.FC<CharacterProps> = ({
 
   return (
     <div>
-      {mode === StageEntryMode.Link ? (
-        <EntryLinkText text={stagedCharacter.description} />
-      ) : (
-        <p>{stagedCharacter.description}</p>
-      )}
+      <p>{stagedCharacter.description}</p>
 
       <div>
         <h3>Personality</h3>
