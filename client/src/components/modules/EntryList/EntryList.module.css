@@ -16,6 +16,11 @@
   margin: 0 0 16px 0;
 }
 
+.EntryList a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
 .EntryList li {
   list-style: none;
   margin-bottom: 2px;
@@ -23,7 +28,7 @@
   cursor: pointer;
 }
 
-.EntryList li.selected {
+.selected {
   background-color: #777d98;
   color: #ffffff;
 }

@@ -12,13 +12,11 @@ interface CharacterRelationship {
 interface CharacterRelationshipsProps {
   character: ICharacter;
   characterList: ICharacter[];
-  handleEntryClick: (entryId: string) => void;
 }
 
 const CharacterRelationships: React.FC<CharacterRelationshipsProps> = ({
   character,
   characterList,
-  handleEntryClick,
 }) => {
   const [relationships, setRelationships] = useState<CharacterRelationship[]>(
     []
@@ -47,7 +45,7 @@ const CharacterRelationships: React.FC<CharacterRelationshipsProps> = ({
         <div key={relationship._id}>
           <div className='relationship'>
             <Link
-              callback={() => handleEntryClick(relationship.relationId)}
+              href={`/entries/${relationship.relationId}`}
               text={relationship.relationName}
             />{' '}
             - {relationship.description}

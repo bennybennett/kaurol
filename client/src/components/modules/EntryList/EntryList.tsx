@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { IEntry } from '../../../../../shared/types/entry';
 import { getAllEntries } from '../../../api/entries';
-import Button from '../../ui/Button/Button';
 import EntryTypeLabel from '../../ui/EntryTypeLabel/EntryTypeLabel';
 import styles from './EntryList.module.css';
+import { Link as RouterLink } from 'react-router-dom';
 
-interface EntryListProps {
-  handleEntryClick: (entryId?: string) => void;
-  selectedEntry: IEntry | null;
-}
-
-const EntryList: React.FC<EntryListProps> = ({
-  handleEntryClick,
-  selectedEntry,
-}) => {
+const EntryList: React.FC = ({}) => {
   const [entries, setEntries] = useState<IEntry[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -67,6 +59,7 @@ const EntryList: React.FC<EntryListProps> = ({
     });
 
   const groupedFilteredEntries = groupEntriesByType(filteredEntries);
+
   return (
     <div className={styles.EntryList}>
       <div className={styles['search-container']}>
@@ -86,23 +79,19 @@ const EntryList: React.FC<EntryListProps> = ({
               <strong>{entryType}</strong>
             </li>
             {groupedFilteredEntries[entryType].map((entry: IEntry) => (
-              <li
-                key={entry._id}
-                style={{ display: 'flex', alignItems: 'center' }}
-                onClick={() => handleEntryClick(entry._id)}
-                className={selectedEntry?._id === entry._id ? 'selected' : ''}
-              >
-                <EntryTypeLabel
-                  seedText={entry.entryType}
-                  letter={entry.entryType ? entry.entryType.charAt(0) : ''}
-                />
-                {entry.title}
-              </li>
+              <RouterLink to={`/entries/${entry._id}`} key={entry._id}>
+                <li style={{ display: 'flex', alignItems: 'center' }}>
+                  <EntryTypeLabel
+                    seedText={entry.entryType}
+                    letter={entry.entryType ? entry.entryType.charAt(0) : ''}
+                  />
+                  {entry.title}
+                </li>
+              </RouterLink>
             ))}
           </React.Fragment>
         ))}
       </ul>
-      <Button text='Add Character' callback={() => handleEntryClick()} />
     </div>
   );
 };

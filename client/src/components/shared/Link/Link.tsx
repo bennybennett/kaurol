@@ -1,16 +1,18 @@
 import React from 'react';
 import styles from './Link.module.css';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 interface LinkProps {
-  callback: () => void;
+  callback?: () => void;
   text: string;
+  href: string;
 }
 
-const Link: React.FC<LinkProps> = ({ callback, text }) => {
+const Link: React.FC<LinkProps> = ({ callback, href, text }) => {
   return (
-    <div className={styles.Link} onClick={callback}>
+    <ReactRouterLink to={href} className={styles.Link}>
       {text}
-    </div>
+    </ReactRouterLink>
   );
 };
 

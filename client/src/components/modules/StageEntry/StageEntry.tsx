@@ -15,7 +15,6 @@ import { updateEntry } from '../../../api/entries';
 
 interface StageEntryProps {
   entry: IEntry;
-  handleEntryClick: (entryId: string) => void;
 }
 
 export enum StageEntryMode {
@@ -24,7 +23,7 @@ export enum StageEntryMode {
   Delete = 'delete',
 }
 
-const StageEntry: React.FC<StageEntryProps> = ({ entry, handleEntryClick }) => {
+const StageEntry: React.FC<StageEntryProps> = ({ entry }) => {
   const [mode, setMode] = useState<StageEntryMode>(StageEntryMode.View);
   const [description, setDescription] = useState(entry.description);
 
@@ -38,18 +37,12 @@ const StageEntry: React.FC<StageEntryProps> = ({ entry, handleEntryClick }) => {
         return (
           <CharacterEntry
             character={entry as ICharacter}
-            handleEntryClick={handleEntryClick}
             mode={mode}
             setModeBackToDefault={() => setMode(StageEntryMode.View)}
           />
         );
       case 'Location':
-        return (
-          <LocationEntry
-            entry={entry as ILocation}
-            handleEntryClick={handleEntryClick}
-          />
-        );
+        return <LocationEntry entry={entry as ILocation} />;
       default:
         return (
           <div>
@@ -68,7 +61,6 @@ const StageEntry: React.FC<StageEntryProps> = ({ entry, handleEntryClick }) => {
   const saveEdit = async () => {
     setMode(StageEntryMode.View);
 
-    console.log(description);
     await updateEntry(entry._id, { description }).catch((err) => {
       console.log(err);
     });

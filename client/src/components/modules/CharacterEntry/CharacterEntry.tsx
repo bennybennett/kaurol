@@ -11,14 +11,12 @@ import styles from './CharacterEntry.module.css';
 
 interface CharacterEntryProps {
   character: ICharacter;
-  handleEntryClick: (entryId: string) => void;
   mode: StageEntryMode;
   setModeBackToDefault: () => void;
 }
 
 const CharacterEntry: React.FC<CharacterEntryProps> = ({
   character,
-  handleEntryClick,
   mode,
   setModeBackToDefault,
 }) => {
@@ -77,7 +75,6 @@ const CharacterEntry: React.FC<CharacterEntryProps> = ({
       {mode === StageEntryMode.View &&
         stagedCharacter.relationships.length > 0 && (
           <CharacterRelationships
-            handleEntryClick={handleEntryClick}
             character={stagedCharacter}
             characterList={characterList}
           />

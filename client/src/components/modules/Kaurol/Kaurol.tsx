@@ -9,11 +9,7 @@ import Link from '../../shared/Link/Link';
 import Button from '../../ui/Button/Button';
 import styles from './Kaurol.module.css';
 
-interface KaurolProps {
-  handleEntryClick: (entryId: string) => void;
-}
-
-const Kaurol: React.FC<KaurolProps> = ({ handleEntryClick }) => {
+const Kaurol: React.FC = ({}) => {
   const [suggestions, setSuggestions] = useState<ISuggestion[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
@@ -38,16 +34,12 @@ const Kaurol: React.FC<KaurolProps> = ({ handleEntryClick }) => {
           <div>
             One-sided relationship between{' '}
             <Link
-              callback={() =>
-                handleEntryClick(oneSidedSuggestion.fromCharacter.id)
-              }
+              href={`/entries/${oneSidedSuggestion.fromCharacter.id}`}
               text={oneSidedSuggestion.fromCharacter.name}
             />{' '}
             and{' '}
             <Link
-              callback={() =>
-                handleEntryClick(oneSidedSuggestion.toCharacter.id)
-              }
+              href={`/entries/${oneSidedSuggestion.toCharacter.id}`}
               text={oneSidedSuggestion.toCharacter.name}
             />
             . Try adding a relationship from{' '}
@@ -61,8 +53,8 @@ const Kaurol: React.FC<KaurolProps> = ({ handleEntryClick }) => {
           <div>
             Character{' '}
             <Link
-              callback={() => handleEntryClick(addMoreSuggestion.character.id)}
               text={addMoreSuggestion.character.name}
+              href={`/entries/${addMoreSuggestion.character.id}`}
             />{' '}
             has very few relationships. Try adding more relationships to this
             character.
