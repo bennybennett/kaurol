@@ -69,7 +69,7 @@ const StageEntry: React.FC<StageEntryProps> = ({ entry }) => {
   return (
     <div className={`${styles.StageEntry} ${styles[`StageEntry-${mode}`]}`}>
       <h1>{entry.title}</h1>
-      <Chip text={entry.entryType} />
+      <Chip>{entry.entryType}</Chip>
       <div className={styles['StageEntry--buttons']}>
         {mode === StageEntryMode.Edit ? (
           <>

@@ -3,15 +3,15 @@ import { generateColor } from '../../../util/color';
 import styles from './Chip.module.css';
 
 interface ChipProps {
-  text: string;
+  children: string;
 }
 
-const Chip: React.FC<ChipProps> = ({ text }) => {
-  const chipStyle = generateColor(text);
+const Chip: React.FC<ChipProps> = ({ children }) => {
+  const chipStyle = generateColor(children);
 
   return (
     <span className={styles.Chip} style={chipStyle}>
-      {text}
+      <strong>{children}</strong>
     </span>
   );
 };
