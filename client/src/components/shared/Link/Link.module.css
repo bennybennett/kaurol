@@ -1,12 +1,28 @@
 .Link {
+  position: relative;
   display: inline-block;
   color: #00b884;
   cursor: pointer;
+  text-decoration: none;
+}
+
+.Link::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #00ffb7;
+  transition: width 0.1s ease-out, left 0.1s ease-out;
 }
 
 .Link:hover {
-  display: inline-block;
   color: #00ffb7;
-  text-decoration: underline;
-  transition: color 0.3s;
+  transition: color 0.1s;
+}
+
+.Link:hover::after {
+  left: 0;
+  width: 100%;
 }

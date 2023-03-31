@@ -1,3 +1,31 @@
 .LocationEntry {
   margin-bottom: 1rem;
 }
+
+.location-category {
+  margin-bottom: 1rem;
+}
+
+.lineage-table {
+  width: 100%;
+  color: #fff;
+  background-color: #2b2b2b;
+  border-collapse: collapse;
+}
+
+.lineage-table td {
+  border: 1px solid #444;
+  padding: 8px 12px;
+}
+
+.lineage-table td:first-child {
+  width: 20%;
+}
+
+.lineage-table td:nth-child(2) {
+  width: 80%;
+}
+
+.lineage-table .current-location {
+  color: #8dffec;
+}
