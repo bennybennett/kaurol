@@ -21,24 +21,22 @@
   color: #ffffff;
 }
 
-.EntryList li {
+.EntryList-item {
   list-style: none;
   margin-bottom: 2px;
   padding: 8px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
-.selected {
-  background-color: #777d98;
-  color: #ffffff;
-}
-
-.EntryList li:not(.selected):hover {
+.EntryList-item:hover {
   background-color: #4a4d5b;
 }
 
-.EntryList .entry:hover {
-  color: #ffffff;
+.EntryList-category {
+  cursor: default;
+  margin: 8px 0 8px 0;
 }
 
 .search-container {

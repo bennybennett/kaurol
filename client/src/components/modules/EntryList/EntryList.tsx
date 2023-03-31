@@ -75,12 +75,12 @@ const EntryList: React.FC = () => {
         {!entries && <li>Loading...</li>}
         {Object.keys(groupedFilteredEntries).map((entryType) => (
           <React.Fragment key={entryType}>
-            <li>
+            <li className={styles['EntryList-category']}>
               <strong>{entryType}</strong>
             </li>
             {groupedFilteredEntries[entryType].map((entry: IEntry) => (
               <RouterLink to={`/entries/${entry._id}`} key={entry._id}>
-                <li style={{ display: 'flex', alignItems: 'center' }}>
+                <li className={styles['EntryList-item']}>
                   <EntryTypeLabel
                     seedText={entry.entryType}
                     letter={entry.entryType ? entry.entryType.charAt(0) : ''}
