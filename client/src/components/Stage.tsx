@@ -25,7 +25,7 @@ const Stage: React.FC = () => {
   if (!selectedEntry) {
     return (
       <div className='stage' style={{ padding: '20px' }}>
-        Create an entry
+        <h1>Loading...</h1>
       </div>
     );
   }

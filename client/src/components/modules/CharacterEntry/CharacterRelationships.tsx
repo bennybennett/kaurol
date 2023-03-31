@@ -44,10 +44,9 @@ const CharacterRelationships: React.FC<CharacterRelationshipsProps> = ({
       {relationships.map((relationship) => (
         <div key={relationship._id}>
           <div className='relationship'>
-            <Link
-              href={`/entries/${relationship.relationId}`}
-              text={relationship.relationName}
-            />{' '}
+            <Link href={`/entries/${relationship.relationId}`}>
+              {relationship.relationName}
+            </Link>{' '}
             - {relationship.description}
           </div>
         </div>

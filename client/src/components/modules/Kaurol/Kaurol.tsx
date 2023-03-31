@@ -33,15 +33,13 @@ const Kaurol: React.FC = () => {
         return (
           <div>
             One-sided relationship between{' '}
-            <Link
-              href={`/entries/${oneSidedSuggestion.fromCharacter.id}`}
-              text={oneSidedSuggestion.fromCharacter.name}
-            />{' '}
+            <Link href={`/entries/${oneSidedSuggestion.fromCharacter.id}`}>
+              {oneSidedSuggestion.fromCharacter.name}
+            </Link>{' '}
             and{' '}
-            <Link
-              href={`/entries/${oneSidedSuggestion.toCharacter.id}`}
-              text={oneSidedSuggestion.toCharacter.name}
-            />
+            <Link href={`/entries/${oneSidedSuggestion.toCharacter.id}`}>
+              {oneSidedSuggestion.toCharacter.name}
+            </Link>
             . Try adding a relationship from{' '}
             {oneSidedSuggestion.toCharacter.name} to{' '}
             {oneSidedSuggestion.fromCharacter.name}.
@@ -52,10 +50,9 @@ const Kaurol: React.FC = () => {
         return (
           <div>
             Character{' '}
-            <Link
-              text={addMoreSuggestion.character.name}
-              href={`/entries/${addMoreSuggestion.character.id}`}
-            />{' '}
+            <Link href={`/entries/${addMoreSuggestion.character.id}`}>
+              {addMoreSuggestion.character.name}
+            </Link>{' '}
             has very few relationships. Try adding more relationships to this
             character.
           </div>
