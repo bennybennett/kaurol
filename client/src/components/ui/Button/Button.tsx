@@ -2,14 +2,24 @@ import React from 'react';
 import styles from './Button.module.css';
 
 interface ButtonProps {
-  text: string;
-  callback: () => void;
+  children: string;
+  callback?: () => void;
+  href?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ text, callback }) => {
+const Button: React.FC<ButtonProps> = ({ children, href, callback }) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (callback) {
+      callback();
+    } else if (href) {
+      event.preventDefault();
+
+      window.location.href = href;
+    }
+  };
   return (
-    <button className={styles.Button} onClick={callback}>
-      {text}
+    <button className={styles.Button} onClick={handleClick}>
+      {children}
     </button>
   );
 };

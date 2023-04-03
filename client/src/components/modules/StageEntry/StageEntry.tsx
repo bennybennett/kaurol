@@ -73,16 +73,15 @@ const StageEntry: React.FC<StageEntryProps> = ({ entry }) => {
       <div className={styles['StageEntry--buttons']}>
         {mode === StageEntryMode.Edit ? (
           <>
-            <Button callback={cancelEdit} text='Cancel' />
-            <Button callback={saveEdit} text='Save' />
+            <Button callback={cancelEdit}>Cancel</Button>
+            <Button callback={saveEdit}>Save</Button>
           </>
         ) : (
           <div>
-            <Button callback={() => setMode(StageEntryMode.Edit)} text='Edit' />
-            <Button
-              callback={() => setMode(StageEntryMode.Delete)}
-              text='Delete'
-            />
+            <Button callback={() => setMode(StageEntryMode.Edit)}>Edit</Button>
+            <Button callback={() => setMode(StageEntryMode.Delete)}>
+              Delete
+            </Button>
           </div>
         )}
       </div>

@@ -4,6 +4,7 @@ import StageEntry from './modules/StageEntry/StageEntry';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getEntryById } from '../api/entries';
+import Button from './ui/Button/Button';
 
 const Stage: React.FC = () => {
   const [selectedEntry, setSelectedEntry] = useState<IEntry | null>(null);
@@ -25,7 +26,8 @@ const Stage: React.FC = () => {
   if (!selectedEntry) {
     return (
       <div className='stage' style={{ padding: '20px' }}>
-        <h1>Loading...</h1>
+        <Button href={'/entries/create?type=Character'}>Add Character</Button>
+        <Button callback={() => {}}>Add Location</Button>
       </div>
     );
   }

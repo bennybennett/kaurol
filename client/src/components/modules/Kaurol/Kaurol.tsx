@@ -69,10 +69,9 @@ const Kaurol: React.FC = () => {
         <div>
           <h3>{suggestions[currentIndex].type}</h3>
           {renderSuggestion(suggestions[currentIndex])}
-          <Button
-            callback={() => handleNextSuggestion()}
-            text='Next Suggestion'
-          />
+          <Button callback={() => handleNextSuggestion()}>
+            Next Suggestion
+          </Button>
         </div>
       )}
     </div>
