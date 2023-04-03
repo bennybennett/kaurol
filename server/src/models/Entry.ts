@@ -19,7 +19,6 @@ const CharacterRelationshipSchema = new Schema({
 });
 
 const CharacterSchema = new Schema({
-  personality: { type: String, required: true },
   appearance: { type: String },
   relationships: [CharacterRelationshipSchema],
 });

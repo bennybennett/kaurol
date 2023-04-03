@@ -1,4 +1,3 @@
-// src/api/characters.ts
 import axios from 'axios';
 import qs from 'qs';
 import { ICharacter } from '../../../shared/types/entry';
@@ -33,6 +32,19 @@ export const addCharacterRelationship = async (
         },
       }
     );
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const createCharacter = async (character: ICharacter): Promise<void> => {
+  try {
+    await axios.post(`${API_URL}/characters`, qs.stringify(character), {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
   } catch (error) {
     console.error(error);
     throw error;

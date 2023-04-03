@@ -12,7 +12,6 @@ export interface IEntry extends Document {
 }
 
 export interface ICharacter extends IEntry {
-  personality: string;
   relationships: ICharacterRelationship[];
 }
 
