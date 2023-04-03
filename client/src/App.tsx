@@ -1,14 +1,14 @@
-import EntryList from './components/modules/EntryList/EntryList';
 import Stage from './components/Stage';
 import Kaurol from './components/modules/Kaurol/Kaurol';
 import { Route, Routes } from 'react-router-dom';
 import { LocationsProvider } from './components/contexts/LocationsContext/LocationsContext';
+import Sidebar from './components/layout/Sidebar/Sidebar';
 
 function App() {
   return (
     <div className='wrapper'>
       <div className='main'>
-        <EntryList />
+        <Sidebar />
         <LocationsProvider>
           <Routes>
             <Route path='/entries/create' element={<Stage />} />

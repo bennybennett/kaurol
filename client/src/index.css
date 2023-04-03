@@ -36,7 +36,6 @@ body {
   margin: 0 auto;
   box-sizing: border-box;
   border: 1px solid #666;
-  border-radius: 4px;
   width: 80%;
   overflow-y: scroll;
 }

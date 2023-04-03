@@ -1,0 +1,9 @@
+.Sidebar {
+  background-color: #3c3f4d;
+  flex: 1;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 20%;
+  overflow-y: scroll;
+}
