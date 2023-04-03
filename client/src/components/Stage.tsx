@@ -4,7 +4,6 @@ import StageEntry from './modules/StageEntry/StageEntry';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getEntryById } from '../api/entries';
-import Button from './ui/Button/Button';
 
 const Stage: React.FC = () => {
   const [selectedEntry, setSelectedEntry] = useState<IEntry | null>(null);
@@ -15,8 +14,6 @@ const Stage: React.FC = () => {
       if (id) {
         const fetchedEntry = await getEntryById(id);
         setSelectedEntry(fetchedEntry);
-      } else {
-        setSelectedEntry(null);
       }
     };
 
@@ -24,12 +21,7 @@ const Stage: React.FC = () => {
   }, [id]);
 
   if (!selectedEntry) {
-    return (
-      <div className='stage' style={{ padding: '20px' }}>
-        <Button href={'/entries/create?type=Character'}>Add Character</Button>
-        <Button callback={() => {}}>Add Location</Button>
-      </div>
-    );
+    return <div>Loading...</div>;
   }
 
   return (

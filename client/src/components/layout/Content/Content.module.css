@@ -1,0 +1,10 @@
+.Content {
+  flex: 4;
+  overflow-y: scroll;
+  background-color: #1e1e1e;
+  color: #ccc;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border: 1px solid #666;
+  padding: 20px;
+}

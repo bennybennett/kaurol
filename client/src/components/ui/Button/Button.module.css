@@ -10,6 +10,10 @@
   margin-bottom: 10px;
 }
 
+.Button a {
+  all: unset;
+}
+
 .Button:hover {
   background-color: #505050;
 }

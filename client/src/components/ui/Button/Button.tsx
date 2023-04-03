@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Button.module.css';
+import { useNavigate } from 'react-router-dom';
 
 interface ButtonProps {
   children: string;
@@ -8,15 +9,18 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ children, href, callback }) => {
+  const navigate = useNavigate();
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (callback) {
       callback();
     } else if (href) {
       event.preventDefault();
 
-      window.location.href = href;
+      navigate(href);
     }
   };
+
   return (
     <button className={styles.Button} onClick={handleClick}>
       {children}

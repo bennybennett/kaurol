@@ -4,6 +4,29 @@
   margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
-  width: 20%;
+  width: 20vw;
   overflow-y: scroll;
+}
+
+.Logo {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-align: center;
+  letter-spacing: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  padding: 5px;
+  background-color: rgba(0, 255, 183, 0);
+  transition: background-color 0.4s, color 0.4s;
+}
+
+.Logo a {
+  all: unset;
+}
+
+.Logo:hover {
+  background-color: rgba(0, 255, 183, 0.3);
+  color: #00ffb7;
 }

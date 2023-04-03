@@ -22,20 +22,3 @@ body {
   flex-direction: column;
   height: 100%;
 }
-
-.main {
-  display: flex;
-  height: 85vh;
-}
-
-/* Stage */
-.stage {
-  background-color: #1e1e1e;
-  color: #ccc;
-  flex: 4;
-  margin: 0 auto;
-  box-sizing: border-box;
-  border: 1px solid #666;
-  width: 80%;
-  overflow-y: scroll;
-}
