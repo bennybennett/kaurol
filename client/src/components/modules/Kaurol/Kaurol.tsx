@@ -64,7 +64,6 @@ const Kaurol: React.FC = () => {
 
   return (
     <div className={styles.Kaurol}>
-      <h2>Kaurol</h2>
       {suggestions.length > 0 && (
         <div>
           <h3>{suggestions[currentIndex].type}</h3>

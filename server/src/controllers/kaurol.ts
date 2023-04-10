@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { CharacterModel } from '../models/Entry';
 import { ICharacter } from '../../../shared/types/entry';
+import { IRandomCharacter } from '../../../shared/types/random';
 import {
   ISuggestion,
   IOneSidedRelationshipSuggestion,
@@ -10,6 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 import nspell from 'nspell';
 import * as fs from 'fs';
 import * as path from 'path';
+import { generateCharacter } from '../utils/generateCharacter';
 
 const getAddMoreRelationshipsSuggestions = async () => {
   // Character Relationship count
@@ -214,6 +216,26 @@ export const getUnfamiliarWords = async (req: Request, res: Response) => {
     console.log('Unfamiliar words:', result);
 
     res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+};
+
+export const getRandomCharacter = async (req: Request, res: Response) => {
+  try {
+    const { firstName, lastName, age, physicalDescription } = req.query;
+
+    const randomCharacter = generateCharacter();
+    const character: IRandomCharacter = {
+      firstName: firstName ? String(firstName) : randomCharacter.firstName,
+      lastName: lastName ? String(lastName) : randomCharacter.lastName,
+      age: age ? Number(age) : randomCharacter.age,
+      physicalDescription: physicalDescription
+        ? String(physicalDescription)
+        : randomCharacter.physicalDescription,
+    };
+
+    res.status(200).json(character);
   } catch (error) {
     res.status(500).json({ error });
   }
